@@ -8,7 +8,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,900;1,900&display=swap');
     :root { --primary: #00ff88; --bg: #020202; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: var(--bg); color: #fff; overflow-x: hidden; min-height: 100vh; font-family: Arial, sans-serif; }
+    body { background-color: var(--bg); color: #fff; overflow-x: hidden; font-family: Arial, sans-serif; }
     .bg-lines {
       position: fixed; inset: 0; z-index: 0;
       background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px);
@@ -21,45 +21,50 @@
     }
     @keyframes moveLines { 0% { transform: translateY(0%); } 100% { transform: translateY(200%); } }
     .lp-wrapper {
-      position: relative; z-index: 10; width: 100%; min-height: 100vh;
+      position: relative; z-index: 10; width: 100%;
+      min-height: 100vh; min-height: 100dvh;
       display: flex; flex-direction: column; justify-content: space-between;
-      padding: 20px 0;
+      padding: clamp(16px, 4vw, 40px) 0;
       background:
         radial-gradient(circle at center, rgba(2,2,2,0.4) 0%, var(--bg) 95%),
         url('https://raw.githubusercontent.com/JCPrime01/jp-api-hnc/main/jp-direto.jpg') center/cover no-repeat;
     }
     .header-section { width: 100%; text-align: center; }
     .section-label {
-      font-size: 12px; text-transform: uppercase; color: var(--primary);
-      letter-spacing: 4px; margin-bottom: 15px; font-weight: bold;
+      font-size: clamp(10px, 2.5vw, 12px); text-transform: uppercase; color: var(--primary);
+      letter-spacing: 4px; margin-bottom: 12px; font-weight: bold;
     }
-    .carousel-container { display: flex; width: 100%; overflow: hidden; padding: 10px 0; }
-    .carousel-track { display: flex; gap: 20px; animation: scroll 30s linear infinite; padding-left: 20px; }
+    .carousel-container { display: flex; width: 100%; overflow: hidden; padding: 8px 0; }
+    .carousel-track { display: flex; gap: 16px; animation: scroll 30s linear infinite; padding-left: 16px; }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .game-card {
       background: rgba(255,255,255,0.03); backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px); min-width: 220px; padding: 16px;
-      border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); text-align: center; flex-shrink: 0;
+      -webkit-backdrop-filter: blur(15px); min-width: clamp(180px, 50vw, 220px); padding: 14px;
+      border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center; flex-shrink: 0;
     }
     .teams-row { display: flex; align-items: center; justify-content: space-around; gap: 8px; }
     .team { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-    .team img { width: 40px; height: 40px; object-fit: contain; }
-    .team span { font-size: 11px; color: #ccc; }
-    .vs { font-weight: 900; color: var(--primary); font-size: 16px; }
-    .headline {
-      font-family: 'Kanit', sans-serif; font-size: clamp(32px, 10vw, 48px);
-      font-weight: 900; font-style: italic; text-transform: uppercase;
-      margin: 20px 0; line-height: 1.1; padding: 0 20px;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    .team img { width: clamp(32px, 8vw, 40px); height: clamp(32px, 8vw, 40px); object-fit: contain; }
+    .team span { font-size: clamp(9px, 2.5vw, 11px); color: #ccc; }
+    .vs { font-weight: 900; color: var(--primary); font-size: clamp(13px, 3.5vw, 16px); }
+    .middle-section {
+      flex: 1; display: flex; align-items: center; justify-content: center;
     }
-    .footer-section { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 0 20px; }
+    .headline {
+      font-family: 'Kanit', sans-serif;
+      font-size: clamp(44px, 14vw, 72px);
+      font-weight: 900; font-style: italic; text-transform: uppercase;
+      line-height: 1; padding: 0 20px; text-align: center;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+    }
+    .footer-section { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 0 clamp(16px, 5vw, 20px); }
     .alert-box {
-      width: 100%; max-width: 380px; background: rgba(255,255,255,0.05);
+      width: 100%; max-width: 420px; background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
       padding: 12px 15px; margin-bottom: 10px; backdrop-filter: blur(10px);
     }
-    .alert-box p { font-size: 13px; color: #fff; line-height: 1.4; text-align: center; }
-    .btn-container { width: 100%; max-width: 380px; margin-bottom: 10px; animation: pulse 2s infinite ease-in-out; }
+    .alert-box p { font-size: clamp(12px, 3vw, 14px); color: #fff; line-height: 1.4; text-align: center; }
+    .btn-container { width: 100%; max-width: 420px; margin-bottom: 10px; animation: pulse 2s infinite ease-in-out; }
     @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
     .btn-border-beam {
       position: relative; padding: 2px; border-radius: 18px; overflow: hidden;
@@ -72,103 +77,114 @@
     }
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .btn-content {
-      position: relative; background: #0088cc; color: #fff; padding: 20px; border-radius: 16px;
-      font-size: 18px; font-weight: 900; text-transform: uppercase;
-      display: flex; align-items: center; justify-content: center; z-index: 5;
+      position: relative; background: #0088cc; color: #fff;
+      padding: clamp(16px, 4vw, 20px); border-radius: 16px;
+      font-size: clamp(15px, 4vw, 18px); font-weight: 900; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 5;
     }
-    .bateubet-footer { width: 100%; display: block; margin-top: 10px; }
+    .bateubet-footer { width: 100%; max-width: 420px; display: block; margin-top: 10px; }
   </style>
 </head>
 <body>
   <div class="bg-lines"></div>
   <div class="lp-wrapper">
+
     <div class="header-section">
       <p class="section-label">Jogos do Dia</p>
       <div class="carousel-container">
         <div class="carousel-track">
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://crests.football-data.org/773.png" alt=""><span>França</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://crests.football-data.org/770.png" alt=""><span>Inglaterra</span></div>
+
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://crests.football-data.org/773.png" alt=""><span>França</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://crests.football-data.org/770.png" alt=""><span>Inglaterra</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/1980/image" alt=""><span>Ponte Preta</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/11920/image" alt=""><span>Goiás</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/1981/image" alt=""><span>Criciúma</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/7074/image" alt=""><span>Vila Nova</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/1969/image" alt=""><span>Sport</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://raw.githubusercontent.com/JCPrime01/jp-api-hnc/main/operario-ferroviario.74223dbc.png" alt=""><span>Operário</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/6832/image" alt=""><span>Atlético-GO</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/43093/image" alt=""><span>Athletic SJDR</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://crests.football-data.org/773.png" alt=""><span>França</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://crests.football-data.org/770.png" alt=""><span>Inglaterra</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/1980/image" alt=""><span>Ponte Preta</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/11920/image" alt=""><span>Goiás</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/1981/image" alt=""><span>Criciúma</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/7074/image" alt=""><span>Vila Nova</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/1969/image" alt=""><span>Sport</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://raw.githubusercontent.com/JCPrime01/jp-api-hnc/main/operario-ferroviario.74223dbc.png" alt=""><span>Operário</span></div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="teams-row">
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/6832/image" alt=""><span>Atlético-GO</span></div>
+              <div class="vs">VS</div>
+              <div class="team"><img src="https://api.sofascore.app/api/v1/team/43093/image" alt=""><span>Athletic SJDR</span></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/1980/image" alt=""><span>Ponte Preta</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/11920/image" alt=""><span>Goiás</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/1981/image" alt=""><span>Criciúma</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/7074/image" alt=""><span>Vila Nova</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/1969/image" alt=""><span>Sport</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://raw.githubusercontent.com/JCPrime01/jp-api-hnc/main/operario-ferroviario.74223dbc.png" alt=""><span>Operário</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/6832/image" alt=""><span>Atlético-GO</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/43093/image" alt=""><span>Athletic SJDR</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://crests.football-data.org/773.png" alt=""><span>França</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://crests.football-data.org/770.png" alt=""><span>Inglaterra</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/1980/image" alt=""><span>Ponte Preta</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/11920/image" alt=""><span>Goiás</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/1981/image" alt=""><span>Criciúma</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/7074/image" alt=""><span>Vila Nova</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/1969/image" alt=""><span>Sport</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://raw.githubusercontent.com/JCPrime01/jp-api-hnc/main/operario-ferroviario.74223dbc.png" alt=""><span>Operário</span></div>
-        </div>
-      </div>
-      <div class="game-card">
-        <div class="teams-row">
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/6832/image" alt=""><span>Atlético-GO</span></div>
-          <div class="vs">VS</div>
-          <div class="team"><img src="https://api.sofascore.app/api/v1/team/43093/image" alt=""><span>Athletic SJDR</span></div>
-        </div>
-      </div>
-        </div>
-      </div>
+    </div>
+
+    <div class="middle-section">
       <h1 class="headline">ANÁLISE<br><span style="color:var(--primary)">LIBERADA</span></h1>
     </div>
+
     <div class="footer-section">
       <div class="alert-box"><p>Grupo gratuito no telegram</p></div>
       <div class="btn-container">
         <a href="https://track.grupojc.cc/track/b215d5e4-a406-450d-bc5f-f9687470105e/redirect?utm_campaign=bateu&utm_content=am10" class="btn-border-beam">
-          <span class="btn-content"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="vertical-align:middle;margin-right:8px"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.64-.204-.657-.64.136-.954l11.566-4.462c.537-.194 1.006.131.832.944z"/></svg> ENTRAR NO GRUPO</span>
+          <span class="btn-content">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            ENTRAR NO GRUPO
+          </span>
         </a>
       </div>
       <img src="https://raw.githubusercontent.com/JCPrime01/jp-api-hnc/main/jotap-ofc.png" class="bateubet-footer" alt="">
     </div>
+
   </div>
 </body>
 </html>
